@@ -1,0 +1,12 @@
+diff --git a/app/components/blocks/StatsBlock.vue b/app/components/blocks/StatsBlock.vue
+index 58c2302..faa8ebb 100644
+--- a/app/components/blocks/StatsBlock.vue
++++ b/app/components/blocks/StatsBlock.vue
+@@ -13,6 +13,6 @@ defineProps<{ block: BlockDoc }>()
+         <dd>{{ item.value }}</dd>
+       </div>
+     </dl>
+-    <small>Stand: {{ block.updated }}</small>
++    <small>Stand: {{ new Date().toLocaleTimeString() }}</small>
+   </section>
+ </template>

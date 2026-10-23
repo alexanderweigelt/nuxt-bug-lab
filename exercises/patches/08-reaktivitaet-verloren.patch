@@ -1,0 +1,19 @@
+diff --git a/app/composables/usePosts.ts b/app/composables/usePosts.ts
+index 8745503..a195a22 100644
+--- a/app/composables/usePosts.ts
++++ b/app/composables/usePosts.ts
+@@ -10,11 +10,9 @@ export function usePosts(initialCategory?: MaybeRefOrGetter<string | undefined>)
+     default: () => [],
+   })
+ 
+-  const posts = computed(() => {
+-    const needle = search.value.trim().toLowerCase()
+-    return data.value.filter((p) => p.title.toLowerCase().includes(needle))
+-  })
+-  const count = computed(() => posts.value.length)
++  const needle = search.value.trim().toLowerCase()
++  const posts = data.value.filter((p) => p.title.toLowerCase().includes(needle))
++  const count = posts.length
+ 
+   // Andere Kategorie -> alter Suchbegriff ergibt keinen Sinn mehr.
+   watch(category, () => {

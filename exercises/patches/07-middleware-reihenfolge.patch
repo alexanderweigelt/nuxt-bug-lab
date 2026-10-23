@@ -1,0 +1,4 @@
+diff --git a/server/middleware/02.inject-club-header.ts b/server/middleware/03b.inject-club-header.ts
+similarity index 100%
+rename from server/middleware/02.inject-club-header.ts
+rename to server/middleware/03b.inject-club-header.ts

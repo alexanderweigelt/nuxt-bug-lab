@@ -1,0 +1,40 @@
+diff --git a/app/app.vue b/app/app.vue
+index 492cc37..9a4be41 100644
+--- a/app/app.vue
++++ b/app/app.vue
+@@ -1,5 +1,5 @@
+ <script setup lang="ts">
+-const { site } = useSiteConfig()
++const { site } = await useSiteConfig()
+ </script>
+ 
+ <template>
+diff --git a/app/components/NavMenu.vue b/app/components/NavMenu.vue
+index cfc383a..7dbf59f 100644
+--- a/app/components/NavMenu.vue
++++ b/app/components/NavMenu.vue
+@@ -1,5 +1,5 @@
+ <script setup lang="ts">
+-const { site, navItems } = useSiteConfig()
++const { site, navItems } = await useSiteConfig()
+ const route = useRoute()
+ 
+ // Welche URL der Browser gerade zeigt, wissen wir nur im Client -> onMounted.
+diff --git a/app/composables/useSiteConfig.ts b/app/composables/useSiteConfig.ts
+index e243ef9..68cdd6b 100644
+--- a/app/composables/useSiteConfig.ts
++++ b/app/composables/useSiteConfig.ts
+@@ -1,10 +1,9 @@
+ import type { SiteConfig } from '../../shared/types/content'
+ 
+ // Wird in mehreren Komponenten aufgerufen (NavMenu, app.vue) – dank festem Key nur ein Request.
+-export function useSiteConfig() {
+-  const { data: site } = useFetch<SiteConfig>('/api/site', {
+-    key: 'site-config',
+-  })
++export async function useSiteConfig() {
++  const site = ref<SiteConfig>()
++  site.value = await $fetch<SiteConfig>('/api/site')
+   const navItems = computed(() => site.value?.nav ?? [])
+ 
+   return { site, navItems }

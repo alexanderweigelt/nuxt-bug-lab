@@ -1,0 +1,20 @@
+diff --git a/app/components/NavMenu.vue b/app/components/NavMenu.vue
+index cfc383a..c862ea4 100644
+--- a/app/components/NavMenu.vue
++++ b/app/components/NavMenu.vue
+@@ -3,14 +3,13 @@ const { site, navItems } = useSiteConfig()
+ const route = useRoute()
+ 
+ // Welche URL der Browser gerade zeigt, wissen wir nur im Client -> onMounted.
+-const currentPath = ref('')
++const currentPath = ref(window.location.pathname)
+ const menuOpen = ref(false)
+ 
+ const syncPath = () => {
+   currentPath.value = window.location.pathname
+ }
+ 
+-onMounted(syncPath)
+ // Bei Client-Navigation laeuft onMounted nicht erneut -> Seiteneffekt per watch.
+ watch(() => route.path, () => {
+   syncPath()

@@ -1,0 +1,13 @@
+diff --git a/app/pages/[...slug].vue b/app/pages/[...slug].vue
+index dad5c17..b349f15 100644
+--- a/app/pages/[...slug].vue
++++ b/app/pages/[...slug].vue
+@@ -8,7 +8,7 @@ const route = useRoute()
+ 
+ const segments = computed(() => route.path.split('/').filter(Boolean))
+ // Vorletztes Segment: /touren/gipfelweg -> "touren". Bei nur einem Segment gibt es keins.
+-const contentType = computed(() => segments.value.at(-2))
++const contentType = computed(() => segments.value.at(-1))
+ const isContent = computed(() => !!contentType.value && CONTENT_TYPES.includes(contentType.value))
+ 
+ const endpoint = computed(() =>

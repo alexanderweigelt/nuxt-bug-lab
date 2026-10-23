@@ -1,0 +1,17 @@
+diff --git a/app/pages/[...slug].vue b/app/pages/[...slug].vue
+index a088fff..43207bb 100644
+--- a/app/pages/[...slug].vue
++++ b/app/pages/[...slug].vue
+@@ -17,7 +17,11 @@ const endpoint = computed(() =>
+ const query = computed(() => (isContent.value ? { type: contentType.value, slug: segments.value.at(-1) } : undefined))
+ 
+ // useFetch reicht beim SSR die Header des eingehenden Requests (z. B. x-club-id) an die interne Route durch.
+-const { data: page, error } = await useFetch<PageDoc>(endpoint, { query })
++const { data: page, error } = await useAsyncData(
++  'page',
++  () => $fetch<PageDoc>(endpoint.value, { query: query.value }),
++  { watch: [endpoint, query] },
++)
+ 
+ if (error.value) {
+   throw createError({

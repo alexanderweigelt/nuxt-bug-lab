@@ -1,0 +1,17 @@
+{
+  "name": "nuxt-bug-lab",
+  "private": true,
+  "type": "module",
+  "description": "Uebungsprojekt: Nuxt-Rendering, Hydration, useFetch und Bug-Hunting an einem erfundenen Wanderverein-Frontend",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "preview": "nuxt preview",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "nuxt": "^4.6.2",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}
